@@ -1,0 +1,40 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: flask-aks-api
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: flask-aks-api
+
+  template:
+    metadata:
+      labels:
+        app: flask-aks-api
+
+    spec:
+      containers:
+        - name: flask-api
+          image: flask-aks-api:v2
+
+          ports:
+            - containerPort: 8001
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 3
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 10
+            periodSeconds: 10
