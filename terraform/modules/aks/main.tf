@@ -8,10 +8,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
   sku_tier = "Free"
 
   default_node_pool {
-    name           = "system"
-    node_count     = 1
-    vm_size        = "Standard_B2s"
-    vnet_subnet_id = var.subnet_id
+    name            = "system"
+    node_count      = 1
+    vm_size         = "Standard_D2s_v4"
+    vnet_subnet_id  = var.subnet_id
+    os_disk_size_gb = 30
   }
 
   identity {

@@ -15,3 +15,8 @@ labels:
   - pairs:
       environment: dev
     includeSelectors: true
+
+images:
+  - name: flask-aks-api
+    newName: acraksplatformdev12345.azurecr.io/flask-aks-api
+    newTag: v2
